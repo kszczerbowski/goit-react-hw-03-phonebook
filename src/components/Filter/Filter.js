@@ -1,22 +1,23 @@
 import React, { Component } from 'react';
-import css from './Filter.module.css';
+import {
+  StyledFilterArea,
+  StyledLabel,
+  StyledFilterInput,
+} from './Filter.styled';
 import PropTypes from 'prop-types';
 
 export class Filter extends Component {
   render() {
     return (
-      <div className={css.filterArea}>
-        <label className={css.inputTitle} htmlFor="filterInput">
-          Find contacts by name
-        </label>
-        <input
+      <StyledFilterArea>
+        <StyledLabel htmlFor="filterInput">Find contacts by name</StyledLabel>
+        <StyledFilterInput
           onChange={this.props.onFilter}
           id="filterInput"
           type="text"
           name="filter"
-          className={css.filterInput}
-        ></input>
-      </div>
+        ></StyledFilterInput>
+      </StyledFilterArea>
     );
   }
 }

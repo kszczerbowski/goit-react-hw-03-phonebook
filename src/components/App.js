@@ -1,4 +1,4 @@
-import css from './App.module.css';
+import { StyledContainer } from './App.styled';
 import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { ContactForm } from './ContactForm/ContactForm';
@@ -49,6 +49,7 @@ export class App extends Component {
       });
     }
     this.handleClearForm(event);
+    document.querySelector('input#nameInput').focus();
   };
 
   handleFilter = event => {
@@ -62,7 +63,7 @@ export class App extends Component {
         .includes(this.state.filter.toLowerCase());
     });
     return (
-      <div className={css.container}>
+      <StyledContainer>
         <h1>Phonebook</h1>
         <ContactForm onSubmit={this.handleAddContact} />
         <h2>Contacts</h2>
@@ -79,7 +80,7 @@ export class App extends Component {
             );
           })}
         </ContactList>
-      </div>
+      </StyledContainer>
     );
   }
 }

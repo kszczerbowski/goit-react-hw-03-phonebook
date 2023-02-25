@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import css from './ContactListElement.module.css';
+import { StyledDeleteButton } from './ContactListElement.styled';
 import PropTypes from 'prop-types';
 
 export class ContactListElement extends Component {
@@ -8,13 +8,9 @@ export class ContactListElement extends Component {
     return (
       <li>
         <span id="name">{name}</span>: {number}
-        <button
-          onClick={onDeleteContact}
-          type="button"
-          className={css.deleteContactButton}
-        >
+        <StyledDeleteButton onClick={onDeleteContact} type="button">
           Delete
-        </button>
+        </StyledDeleteButton>
       </li>
     );
   }

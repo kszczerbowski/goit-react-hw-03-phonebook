@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import css from './ContactList.module.css';
+import { StyledContactList } from './ContactList.styled';
 import PropTypes from 'prop-types';
 
 export class ContactList extends Component {
   render() {
     return (
-      <ul className={css.contacts} id="contactsList">
+      <StyledContactList id="contactsList">
         {this.props.children}
-      </ul>
+      </StyledContactList>
     );
   }
 }
