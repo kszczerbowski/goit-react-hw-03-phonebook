@@ -73,6 +73,7 @@ export class App extends Component {
             return (
               <ContactListElement
                 key={contact.name}
+                id={contact.id}
                 name={contact.name}
                 number={contact.number}
                 onDeleteContact={this.handleDeleteContact}
