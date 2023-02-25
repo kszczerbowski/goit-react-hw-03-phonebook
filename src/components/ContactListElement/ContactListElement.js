@@ -8,7 +8,12 @@ export class ContactListElement extends Component {
     return (
       <li>
         <span id="name">{name}</span>: {number}
-        <StyledDeleteButton onClick={onDeleteContact} type="button">
+        <StyledDeleteButton
+          onClick={() => {
+            onDeleteContact(name);
+          }}
+          type="button"
+        >
           Delete
         </StyledDeleteButton>
       </li>

@@ -12,14 +12,17 @@ export class App extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    this.setState({ contacts: this.getContactsFromLocalStorage() });
+  }
+
   handleClearForm = event => {
     const form = event.currentTarget;
     form.elements.name.value = '';
     form.elements.number.value = '';
   };
 
-  handleDeleteContact = event => {
-    const nameToDelete = event.currentTarget.previousElementSibling.textContent;
+  handleDeleteContact = nameToDelete => {
     const namesArray = this.state.contacts.map(contact => contact.name);
     const index = namesArray.indexOf(nameToDelete);
     this.setState({
@@ -56,12 +59,22 @@ export class App extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  getContactsFromLocalStorage = () => {
+    const arrOfValues = Object.values({ ...localStorage });
+    const arrOfObjects = arrOfValues.map(record => JSON.parse(record));
+    return arrOfObjects;
+  };
+
   render() {
-    const filteredContacts = this.state.contacts.filter(contact => {
-      return contact.name
-        .toLowerCase()
-        .includes(this.state.filter.toLowerCase());
-    });
+    const filteredAndSortedContacts = this.state.contacts
+      .filter(contact => {
+        return contact.name
+          .toLowerCase()
+          .includes(this.state.filter.toLowerCase());
+      })
+      .sort((firstContact, secondContact) =>
+        firstContact.name.localeCompare(secondContact.name)
+      );
     return (
       <StyledContainer>
         <h1>Phonebook</h1>
@@ -69,7 +82,7 @@ export class App extends Component {
         <h2>Contacts</h2>
         <Filter onFilter={this.handleFilter} />
         <ContactList>
-          {filteredContacts.map(contact => {
+          {filteredAndSortedContacts.map(contact => {
             return (
               <ContactListElement
                 key={contact.name}

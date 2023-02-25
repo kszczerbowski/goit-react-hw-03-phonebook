@@ -6,5 +6,4 @@ export const StyledContactList = styled.ul`
   margin: 0px auto;
   text-align: left;
   list-style-position: inside;
-  color: red;
 `;
